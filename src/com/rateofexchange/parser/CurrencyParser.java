@@ -1,5 +1,7 @@
 package com.rateofexchange.parser;
 
+import java.io.InputStream;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -22,7 +24,8 @@ public class CurrencyParser {
 		try {
 			JAXBContext context = JAXBContext.newInstance(CurrencyList.class);
 			Unmarshaller um = context.createUnmarshaller();
-			curL = (CurrencyList) um.unmarshal(vendor.getFile());
+			InputStream input = vendor.getInputStream();
+			curL = (CurrencyList) um.unmarshal(input);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
